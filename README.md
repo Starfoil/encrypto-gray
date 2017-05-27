@@ -12,4 +12,5 @@ key.
 
 ## Notes
 The script takes a fair amount of time to run and is recommended to not encrypt any files that are larger than 100KB.
+
 The encryption bit (key size) can also be changed although not advised.
