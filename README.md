@@ -11,7 +11,7 @@ key will also be generated and saved to a text file.
 To decrypt the files, simply run <b>decrypto.py</b> and all .encrypted files will be decrypted using the given rsa-decryption
 key.
 
-<i> The files CANNOT be decrypted otherwise without the proper decryption key </i>
+<i> The files CANNOT be decrypted otherwise without the proper decryption key. Yea, don't lose the key. </i>
 
 ## Notes
 The script takes a fair amount of time to run and is recommended to not encrypt any files that are larger than 100KB.
