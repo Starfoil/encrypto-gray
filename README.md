@@ -1,5 +1,8 @@
 # encrypto-gray
 A small Python script for encrypting a directory using a 32-bit deterministic RSA encryption scheme.
+
+DISCLAIMER: This project is for fun, don't actually use it for real encryption.
+
 ## Usage
 Place the required files into a local directory. Run the script <b>encrypto-run.py</b> and all accessible files within 
 the directory will be rsa-encrypted with a generated rsa-encryption key of 32-bit. The public key and 32-bit rsa-decryption
